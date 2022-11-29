@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -13,20 +15,13 @@ export class LoginComponent implements OnInit {  //(3rd execute)
   acno =''
   pswd=''
 
-  //database creation 
-
-
-  userDetails:any={
-    1000:{acno:1000,username:'Abhinav',password:1000,balance:1000},
-    1001:{acno:1001,username:'Soorya',password:1001,balance:1000},
-    1002:{acno:1002,username:'Anujith',password:1000,balance:1000}
-  }
 
   //class - collection of properties and function
   //properties/variables
   //functions/methods - user defined functions
-
-  constructor() { //(1st execute)
+  
+  //dependancy injuction
+  constructor(private ds:DataService,private router:Router) { //(1st execute)
   //it automatically invokes when the object is created
   //object initialization
 }
@@ -50,50 +45,59 @@ pswdChange( event:any){
   console.log(this.pswd);
   
 }
-//   login(){
-//     // alert('login clicked')
-//     var acno = this.acno;
-//     var pswd= this.pswd;
-//     var userDetailes= this.userDetails;
+  login(){
+    // alert('login clicked')
+    var acno = this.acno;
+    var pswd= this.pswd;
+    var userDetailes= this.ds.userDetails;
+    const result = this.ds.login(acno,pswd)
+    if(result){
+      alert('login successful')
+      this.router.navigateByUrl('dashboard')
+    }
+    else{
+      alert('lofin failed')
+    }
 
 
-//     if(acno in userDetailes){
-//       if(pswd==userDetailes[acno]['password']){
-//         alert('Login Succesful')
-//       }
-//       else{
-//         alert('Ivalid Password')
-//       }
-//     }
-//     else{
-//       alert('Invalid Userdetails')
-//     }
+    // if(acno in userDetailes){
+    //   if(pswd==userDetailes[acno]['password']){
+    //     alert('Login Succesful')
+    //     this.router.navigateByUrl('dashboard')
+    //   }
+    //   else{
+    //     alert('Ivalid Password')
+    //   }
+    // }
+    // else{
+    //   alert('Invalid Userdetails')
+    // }
 //   }
 
 
 
   
-  login(a:any , p:any){
-    // alert('login clicked')
-    var acno = a.value;
-    var pswd= p.value;
-    var userDetailes= this.userDetails;
+  // login(a:any , p:any){
+  //   // alert('login clicked')
+  //   var acno = a.value;
+  //   var pswd= p.value;
+  //   var userDetailes= this.userDetails;
 
 
-    if(acno in userDetailes){
-      if(pswd==userDetailes[acno]['password']){
-        alert('Login Succesful')
-      }
-      else{
-        alert('Ivalid Password')
-      }
-    }
-    else{
-      alert('Invalid Userdetails')
-    }
-  }
+  //   if(acno in userDetailes){
+  //     if(pswd==userDetailes[acno]['password']){
+  //       alert('Login Succesful')
+  //     }
+  //     else{
+  //       alert('Ivalid Password')
+  //     }
+  //   }
+  //   else{
+  //     alert('Invalid Userdetails')
+  //   }
+  // }
 
 }
 
-
+}
 

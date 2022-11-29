@@ -1,0 +1,49 @@
+<div>
+    <div>
+    <h1>welcome {{user}}</h1>
+    <!-- <a routerLink="">ts</a> -->
+    <div class="dashlink">
+    <a routerLink="/transaction">transaction history</a>
+    <!-- <a routerLink="" >Forgotpassword?</a> -->
+</div>
+
+    
+</div>
+<div class="row mt-5"></div>
+    <!-- <div class="colo-4"></div> -->
+    <div class="col-4 container text-center border border-dark border-2" id="div">
+        <img src="../../assets/images/bank2.png" alt="">
+    <h1>DEPOSIT</h1>
+    <input [(ngModel)] ="acno" type="text" placeholder="Acount Number" class="form-control" id="depo_acno"><br><br>
+    <input  [(ngModel)] ="pswd"type="password" placeholder="Password" class="form-control" id="depo_pswd"><br><br>
+    <input  [(ngModel)] ="amount"type="text" placeholder="Amount" class="form-control" id="depo_name"><br><br>
+    <!-- <button type="button" onclick="register()">Regiser</button><br><br> -->
+    <button type="button" class="btn btn-info" (click)="deposit()">Deposit</button><br><br>
+    
+    <a href="" class="dlink">sign in</a>
+    <!-- <a href="#" id="link">Forgotpassword?</a><br><br> -->
+    </div>
+   
+
+<div class="col-4"></div>
+
+<div class="row mt-5"></div>
+    <div class="colo-4"></div>
+    <div class="col-4 container text-center border border-dark border-2" id="div">
+        <img src="../../assets/images/bank2.png" alt="">
+    <h1>WITHDRAW</h1>
+    <input [(ngModel)] ="acno1" type="text" placeholder="Account Number" class="form-control" id="with_acno"><br><br>
+    <input  [(ngModel)] ="pswd1"type="password" placeholder="Password" class="form-control" id="with_pswd"><br><br>
+    <input  [(ngModel)] ="amount1"type="text" placeholder="Amount" class="form-control" id="with_name"><br><br>
+    <!-- <button type="button" onclick="register()">Regiser</button><br><br> -->
+    <button type="button" class="btn btn-info" (click)="withdraw()">withdraw</button><br><br>
+    
+    <a href="" class="dlink">sign in</a>
+    <!-- <a href="#" id="link">Forgotpassword?</a><br><br> -->
+    </div>
+   
+
+<div class="col-4"></div>
+
+
+

@@ -13,7 +13,8 @@ Basic Commands
 
 
 baasic concepts
-Data Binding----share data between components
+
+1]  Data Binding----share data between components
 
 ts-- component
 html -- view
@@ -34,5 +35,61 @@ data sharing only one direction
 
 
 
-2)Two Way Databinding
-Data sharing in both direction
+        2)Two Way Databinding
+          Data sharing in both direction(ts -> html     html->ts
+          i)ngModel binding - import formmodule in app.module.ts
+           [(ngModel)]="property_name"
+
+
+ 2]  Angular Routing
+
+        To set path for component
+
+        {
+         path:value,component:component_name
+        },
+        
+         login
+         {
+            path:'',component:logincomponent
+        },
+
+
+
+
+
+
+
+3]Angular services
+
+         To hold redundant data
+
+   to create a new service -- ng g s serve_name
+
+
+
+ 4] Dependancy Injuction
+    
+    share data between two dependend classes
+    constructors(private ds:DataServices)
+
+5)Angular Directives-- to manipulate DOM
+
+  a)component directives (array)
+
+
+  b)structural directives (table)
+  ->*ngFor
+
+
+  6)Angular forms
+   
+     a)Tempelate Driven forms(first design the html tempelate)
+     b)Model Driven forms (first design model in ts file)
+        1)Reactive forms
+          formGroup,array,control
+          for advanced validation
+          import form Reactive Forms Module(in app.module.ts)
+    
+
+
