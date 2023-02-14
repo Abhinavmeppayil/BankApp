@@ -1,30 +1,46 @@
-<div>
+<button class="btn btn-warning" style="float: right ;"(click)="logout()">Logout</button>
+<button class="btn btn-danger" style="float: right ;"(click)="delete()">Delete</button>
+
+<div class="parent">
     <div>
-    <h1>welcome {{user}}</h1>
+    <h1 style=>welcome {{user}}</h1>
     <!-- <a routerLink="">ts</a> -->
     <div class="dashlink">
     <a routerLink="/transaction">transaction history</a>
+    <h6>System Date And Time{{sdate | date:'short'}}</h6>
+    
     <!-- <a routerLink="" >Forgotpassword?</a> -->
 </div>
+<app-delete [item]="acno" (onCancel)="onCancel()"></app-delete>
 
     
-</div>
+<!-- </div> -->
+<div class="child" [ngClass]="acno? 'style1':''">
 <div class="row mt-5"></div>
     <!-- <div class="colo-4"></div> -->
     <div class="col-4 container text-center border border-dark border-2" id="div">
         <img src="../../assets/images/bank2.png" alt="">
     <h1>DEPOSIT</h1>
-    <input [(ngModel)] ="acno" type="text" placeholder="Acount Number" class="form-control" id="depo_acno"><br><br>
-    <input  [(ngModel)] ="pswd"type="password" placeholder="Password" class="form-control" id="depo_pswd"><br><br>
-    <input  [(ngModel)] ="amount"type="text" placeholder="Amount" class="form-control" id="depo_name"><br><br>
+    <form [formGroup]="depositForm">
+    <input formControlName ="acno" type="text" placeholder="Acount Number" class="form-control" id="depo_acno"><br><br>
+    <div *ngIf="this.depositForm.get('acno')?.errors &&   this.depositForm.get('acno')?.touched" style="color: red;">Invalid Accoun Number</div>
+
+    <input  formControlName ="pswd"type="password" placeholder="Password" class="form-control" id="depo_pswd"><br><br>
+    <div *ngIf="this.depositForm.get('pswd')?.errors &&   this.depositForm.get('pswd')?.touched" style="color: red;">Invalid password </div>
+    <input  formControlName="amount"type="text" placeholder="Amount" class="form-control" id="depo_name"><br><br>
+    <div *ngIf="this.depositForm.get('amount')?.errors &&   this.depositForm.get('amount')?.touched" style="color: red;">Invalid Amount </div>
     <!-- <button type="button" onclick="register()">Regiser</button><br><br> -->
     <button type="button" class="btn btn-info" (click)="deposit()">Deposit</button><br><br>
+</form>
     
     <a href="" class="dlink">sign in</a>
     <!-- <a href="#" id="link">Forgotpassword?</a><br><br> -->
     </div>
+</div>
    
 
+
+<div class="child"  [ngClass]="acno? 'style1':''">
 <div class="col-4"></div>
 
 <div class="row mt-5"></div>
@@ -32,11 +48,21 @@
     <div class="col-4 container text-center border border-dark border-2" id="div">
         <img src="../../assets/images/bank2.png" alt="">
     <h1>WITHDRAW</h1>
-    <input [(ngModel)] ="acno1" type="text" placeholder="Account Number" class="form-control" id="with_acno"><br><br>
-    <input  [(ngModel)] ="pswd1"type="password" placeholder="Password" class="form-control" id="with_pswd"><br><br>
-    <input  [(ngModel)] ="amount1"type="text" placeholder="Amount" class="form-control" id="with_name"><br><br>
+    <form [formGroup]="withdrawForm">
+    <input formControlName ="acno1" type="text" placeholder="Account Number" class="form-control" id="with_acno"><br><br>
+    <div *ngIf="this.withdrawForm.get('acno1')?.errors &&   this.withdrawForm.get('acno1')?.touched" style="color: red;">Invalid Username</div>
+
+    <input  formControlName="pswd1"type="password" placeholder="Password" class="form-control" id="with_pswd"><br><br>
+    <div *ngIf="this.withdrawForm.get('pswd1')?.errors &&   this.withdrawForm.get('pswd1')?.touched" style="color: red;">Invalid Password</div>
+
+    <input  formControlName="amount1"type="text" placeholder="Amount" class="form-control" id="with_name"><br><br>
+    <div *ngIf="this.withdrawForm.get('amount1')?.errors &&   this.withdrawForm.get('amount1')?.touched" style="color: red;">Invalid Amount</div>
+
+    
+
     <!-- <button type="button" onclick="register()">Regiser</button><br><br> -->
     <button type="button" class="btn btn-info" (click)="withdraw()">withdraw</button><br><br>
+</form>
     
     <a href="" class="dlink">sign in</a>
     <!-- <a href="#" id="link">Forgotpassword?</a><br><br> -->
@@ -44,6 +70,8 @@
    
 
 <div class="col-4"></div>
-
+</div>
+</div>
+<!-- </div> -->
 
 

@@ -4,9 +4,13 @@
         <img src="../../assets/images/bank2.png" alt=""><br><br>
     <h1>My Bank</h1>
     <h6>{{aim}}</h6>
-    <input [(ngModel)] ="acno"type="text" [placeholder]="account " class="form-control" id="login_acno"><br><br>
-    <input   [(ngModel)]="pswd" type="password" placeholder="password" class="form-control" id="login_pswd"><br><br>
-    <button type="button" id="btnn" (click)="login()">Login</button><br><br><br>  
+    <form [formGroup]="loginForm">
+    <input formControlName ="acno"type="text" placeholder="account number " class="form-control" id="login_acno"><br>
+    <div *ngIf="this.loginForm.get('acno')?.errors &&   this.loginForm.get('acno')?.touched" style="color: red;">Invalid Account number</div>
+    <input  formControlName="pswd" type="password" placeholder="password" class="form-control" id="login_pswd"><br>
+    <div *ngIf="this.loginForm.get('pswd')?.errors &&   this.loginForm.get('pswd')?.touched" style="color: red;">Invalid Password</div>
+    <button type="button" id="btnn" (click)="login()">Login</button><br>
+</form>
     <div>
     <a routerLink=""  class="rlink">Forgotpassword?</a> or <a routerLink="register" id="sign" class="rlink">sign up</a>
 </div>

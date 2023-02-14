@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -21,10 +22,16 @@ export class LoginComponent implements OnInit {  //(3rd execute)
   //functions/methods - user defined functions
   
   //dependancy injuction
-  constructor(private ds:DataService,private router:Router) { //(1st execute)
+  constructor(private fb:FormBuilder  ,private ds:DataService,private router:Router) { //(1st execute)
   //it automatically invokes when the object is created
   //object initialization
+
 }
+loginForm =this.fb.group({
+acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+pswd:['',[Validators.required,Validators.pattern('[a-zA-Z,0-9]*')]]
+
+})
 
   ngOnInit(): void {  //(2nd execute)
   }
@@ -47,57 +54,25 @@ pswdChange( event:any){
 }
   login(){
     // alert('login clicked')
-    var acno = this.acno;
-    var pswd= this.pswd;
-    var userDetailes= this.ds.userDetails;
-    const result = this.ds.login(acno,pswd)
-    if(result){
-      alert('login successful')
-      this.router.navigateByUrl('dashboard')
-    }
-    else{
-      alert('lofin failed')
-    }
-
-
-    // if(acno in userDetailes){
-    //   if(pswd==userDetailes[acno]['password']){
-    //     alert('Login Succesful')
-    //     this.router.navigateByUrl('dashboard')
-    //   }
-    //   else{
-    //     alert('Ivalid Password')
-    //   }
-    // }
-    // else{
-    //   alert('Invalid Userdetails')
-    // }
-//   }
-
-
-
-  
-  // login(a:any , p:any){
-  //   // alert('login clicked')
-  //   var acno = a.value;
-  //   var pswd= p.value;
-  //   var userDetailes= this.userDetails;
-
-
-  //   if(acno in userDetailes){
-  //     if(pswd==userDetailes[acno]['password']){
-  //       alert('Login Succesful')
-  //     }
-  //     else{
-  //       alert('Ivalid Password')
-  //     }
-  //   }
-  //   else{
-  //     alert('Invalid Userdetails')
-  //   }
-  // }
-
+    
+    var acno = this.loginForm.value.acno;
+    var pswd= this.loginForm.value.pswd;
+    // var userDetailes= this.ds.userDetails;
+   
+    if(this.loginForm.valid){
+      this.ds.login(acno,pswd)
+      .subscribe((result:any)=>{
+        localStorage.setItem('currentuser',JSON.stringify(result.currentuser));
+        localStorage.setItem('currentAcno',JSON.stringify(result.currentAcno));
+        localStorage.setItem('token',JSON.stringify(result.token));
+        alert(result.message);
+        this.router.navigateByUrl('dashboard')
+      },
+      result=>{
+        alert(result.error.message)
+        
+       }
+       )
+      }
 }
-
 }
-

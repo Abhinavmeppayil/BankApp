@@ -90,6 +90,28 @@ data sharing only one direction
           formGroup,array,control
           for advanced validation
           import form Reactive Forms Module(in app.module.ts)
+
+
+
+
+
+7) Local storage
+
+
+        setItem-To store data in localstorage
+        getItem-To get data from datalocal storage 
+        removeItem- TO remove data from localstorage
+
+
+8)Parent child communication
+   
+        parent--child communication
+        child--parent communication
+
+
+        eg:
+        dashboared -> parent
+        delete -> child
     
 
 
